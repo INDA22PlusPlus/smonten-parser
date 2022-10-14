@@ -10,19 +10,19 @@
 
 <statements> ::= <statements> <statement> | <statement>
 
-<statement> ::= <assignment> | <if-statement> | <output> | <loop> | <break-loop>
+<statement> ::= <assignment> | <if-statement> | <print> | <loop> | <break-loop>
 
-<output> ::= "💬" "✋" <expr> "🤚" <eol>
+<print> ::= "💬" "✋" <expr> "🤚" <eol>
 
-<assignment> ::= <emoji> "👈" <expr> <eol>
+<assignment> ::= <emojis> "👈" <expr> <eol>
 
 <expr> ::= <expr> “➕” <term> | <expr> “➖” <term> | <term>
 
-<term> ::= <term> “✖️” <factor> | <term> “➗” <factor> | <factor>
+<term> ::= <term> “❎” <factor> | <term> “➗” <factor> | <factor>
 
 <factor> ::= “✋“ <expr> “🤚” | “➖” <factor> | <integer> | <identifier>
 
-<identifier> ::= <emoji> | <int>
+<identifier> ::= <emojis> | <int>
 
 <int> ::= <int> <digit> | <digit>
 
@@ -40,7 +40,9 @@
 
 <etx> ::= "U+2403"
 
-<digit> ::= "0️⃣" | "1️⃣" | "2️⃣" | "3️⃣" | "4️⃣" | "5️⃣" | "6️⃣" | "7️⃣" | "8️⃣" | "9️⃣"
+<digit> ::= | "🕛" | "🕐" | "🕑" | "🕒" | "🕓" | "🕔" | "🕕" | "🕖" | "🕗" | "🕘"
+
+<emojis> ::= <emojis> <emoji> | <emoji>
 
 <emoji> ::= "😀" | "😃" | "😄" | "😁" | "😆" | "🥹" | "😅" | "😂" | "🤣" | "🥲" | "😊" | "😇" | "🙂" | "🙃" | "😉" | "😌" | "😍" | "🥰" | "😘" | "😗" | "😙" | "😚" | "😋" | "😛" | "😝" | "😜" | "🤪" | "🤨" | "🧐" | "🤓" | "😎" | "🥸" | "🤩" | "🥳" | "😏" | "😒" | "😞" | "😔" | "😟" | "😕" | "🙁" | "😣" | "😖" | "😫" | "😩" | "🥺" | "😢" | "😭" | "😤" | "😠" | "😡" | "🤬" | "🤯" | "😳" | "🥵" | "🥶" | "😶‍🌫️" | "😱" | "😨" | "😰" | "😥" | "😓" | "🤗" | "🤔" | "🫣" | "🤭" | "🫢" | "🫡" | "🤫" | "🫠" | "🤥" | "😶" | "🫥" | "😐" | "🫤" | "😑" | "😬" | "🙄" | "😯" | "😦" | "😧" | "😮" | "😲" | "🥱" | "😴" | "🤤" | "😪" | "😮‍💨" | "😵" | "😵‍💫" | "🤐" | "🥴" | "🤢" | "🤮" | "🤧" | "😷" | "🤒" | "🤕" | "🤑" | "🤠" | "😈" | "👿" | "👹" | "👺" | "🤡" | "💩" | "👻" | "💀" | "☠️" | "👽" | "👾" | "🤖" | "🎃" | "😺" | "😸" | "😹" | "😻" | "😼" | "😽" | "🙀" | "😿" | "😾"
 ```
