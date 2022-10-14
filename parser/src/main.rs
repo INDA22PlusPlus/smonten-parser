@@ -15,9 +15,9 @@ use::std::fmt;
 
 
 fn main() {
-    let mut Tokenizer = Tokenizer::new();
+    let mut tokenizer = Tokenizer::new();
     // read_file_emojis::format_emojis();
-    let tokens = match Tokenizer.tokenize() {
+    let tokens = match tokenizer.tokenize() {
         Err(e) => panic!("{}", e),
         Ok(token_vec) => token_vec,
     };
@@ -761,6 +761,12 @@ impl ValidEmojis {
             ]
          }
     }
+    fn print_as_bnf(&self) {
+        for c in &self.user_emojis {
+            print!("\"{}\" |", c);
+        }
+        println!();
+    }
 }
 
 struct ValidDigits {
@@ -799,6 +805,7 @@ impl ValidDigits {
 struct Parser {
     token_vec: Vec<Token>,
     statement_vec: Vec<ASTnode>
+    // SYMBOLTABLE??
 }
 impl Parser {
     fn new(token_vec: Vec<Token>) -> Parser {
