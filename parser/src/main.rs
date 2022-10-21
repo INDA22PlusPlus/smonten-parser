@@ -37,6 +37,7 @@ struct Tokenizer {
     token_vec: Vec<Token>
 }
 impl Tokenizer {
+    
     fn new() -> Tokenizer {
         let mut buffer = String::new();
         io::stdin().read_to_string(&mut buffer).unwrap(); // reads the entierty of standard input to one String
@@ -804,38 +805,66 @@ impl ValidDigits {
 
 struct Parser {
     token_vec: Vec<Token>,
-    statement_vec: Vec<ASTnode>
+    ast: ASTnode,
     // SYMBOLTABLE??
 }
 impl Parser {
     fn new(token_vec: Vec<Token>) -> Parser {
         Parser {
             token_vec: token_vec,
-            statement_vec: vec![]
+            ast: ASTnode::StatementSeq(vec![]),
         }
     }
+    fn parse(&mut self) -> Result<ASTnode, String>{
+        match self.peek() {
+            None => (),
+            Some(t) => {
+                match t.token_type {
+                    TokenType::Identifier(i) => {
+                        
+                    },
+                    _ => {
+
+                    }
+                }
+            }
+        }
+        Ok(self.ast.clone())
+    }
+
+    fn is_empty(&self) -> bool {
+        self.token_vec.len() == 0
+    }
+
+    fn peek(&self) -> Option<Token> {
+        if !self.is_empty() {
+            None
+        } else {
+            Some(self.token_vec[0].clone())
+        }
+    }
+
+    fn next(&mut self) {
+        if ! self.is_empty() {
+            self.token_vec = self.token_vec[1..].to_vec();
+        }
+    }
+
+    fn get_next(&mut self) -> Option<Token> {
+        let tmp = self.peek();
+        self.next();
+        return tmp;
+    }
 }
-struct ASTnode {
+
+#[derive(Debug, Clone)]
+enum ASTnode {
+    StatementSeq(Vec<ASTnode>),
+    Node(ASTtoken)
+}
+
+#[derive(Debug, Clone)]
+struct ASTtoken {
     token: Token,
-    // children ordered from L to R
     children: Vec<ASTnode>
-}
-
-impl ASTnode {
-    fn new(token: Token) -> ASTnode {
-        ASTnode {
-            token: token,
-            children: vec![]
-        }
-    }
-    fn add_child(&mut self, child: ASTnode) {
-        self.children.push(child);
-    }
-}
-
-enum StatementType {
-    If,
-    Assign,
-    Loop,
-    Print,
 }
