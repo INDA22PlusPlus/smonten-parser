@@ -10,6 +10,8 @@ use std::vec;
 mod read_file_emojis;
 use read_file_emojis::*;
 
+use std::collections::HashMap;
+
 use::std::fmt;
 
 
@@ -806,13 +808,14 @@ impl ValidDigits {
 struct Parser {
     token_vec: Vec<Token>,
     ast: ASTnode,
-    // SYMBOLTABLE??
+    symbol_table: HashMap<String, i32>
 }
 impl Parser {
     fn new(token_vec: Vec<Token>) -> Parser {
         Parser {
             token_vec: token_vec,
             ast: ASTnode::StatementSeq(vec![]),
+            symbol_table: HashMap::new(),
         }
     }
     fn parse(&mut self) -> Result<ASTnode, String>{
@@ -830,6 +833,28 @@ impl Parser {
             }
         }
         Ok(self.ast.clone())
+    }
+
+    fn parse_assignment(&mut self) {
+        let var_name = match self.get_next() {
+            Some(Token{token_type: TokenType::Identifier(Identifier::Emojis(emojis)), location: _}) => {
+                emojis
+            },
+            _ => panic!()
+        };
+
+        loop {
+            match self.peek() {
+                Some(Token{token_type: TokenType::EOL, location: _}) => {
+                    break;
+                },
+                Some(t) => {
+
+                },
+                None => panic!()
+            }
+        }
+
     }
 
     fn is_empty(&self) -> bool {
