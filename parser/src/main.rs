@@ -17,15 +17,18 @@ use::std::fmt;
 
 
 fn main() {
+
     let mut tokenizer = Tokenizer::new();
     // read_file_emojis::format_emojis();
+    
     let tokens = match tokenizer.tokenize() {
         Err(e) => panic!("{}", e),
         Ok(token_vec) => token_vec,
     };
+    
     dbg!(&tokens);
 
-    let mut parser = Parser::new(tokens);
+    // let mut parser = Parser::new(tokens);
     
 
 }
