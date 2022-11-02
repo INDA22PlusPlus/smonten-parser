@@ -28,7 +28,7 @@
 
 <if-statement> ::= "👀" <expr> <cmp> <expr> "🫳" <nl> <statements> <nl> "🫴" <eol>
 
-<cmp> ::= "👉" "👈" | "🐊" | "🐰" | "👎🐊" | "👎🐰" | "👎👈"
+<cmp> ::= "👉👈" | "🐊" | "🐰" | "👎🐊" | "👎🐰" | "👎👈"
 
 <loop> ::= "🔄" "🫳" <nl> <statements> <nl> "🫴" <eol>
 
